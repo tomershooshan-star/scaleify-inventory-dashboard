@@ -1,0 +1,26 @@
+{
+  "tiers": {
+    "critical": {
+      "days_left_max": 3,
+      "action": "Order immediately",
+      "notify": ["slack", "email"],
+      "color": "#f43f5e"
+    },
+    "warning": {
+      "days_left_max": 7,
+      "action": "Order this week",
+      "notify": ["slack"],
+      "color": "#f59e0b"
+    },
+    "watch": {
+      "days_left_max": 14,
+      "action": "Monitor closely",
+      "notify": [],
+      "color": "#4de8e8"
+    }
+  },
+  "category_overrides": {},
+  "notification_schedule": "08:00",
+  "daily_report": true,
+  "weekly_summary": true
+}

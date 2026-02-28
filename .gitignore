@@ -4,3 +4,13 @@ dist
 .env.local
 .vite
 *.log
+.vercel
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+data/inventory.db
+data/imports/processed/
+data/reports/
+data/notification_log.json

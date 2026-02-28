@@ -1,0 +1,25 @@
+{
+  "suppliers": [
+    {
+      "name": "",
+      "contact_email": "",
+      "type": "api",
+      "api_endpoint": "",
+      "api_key_env": "SUPPLIER_API_KEY_1",
+      "lead_time_days": 5,
+      "min_order_qty": 50,
+      "categories": [],
+      "refresh_schedule": "daily"
+    },
+    {
+      "name": "",
+      "contact_email": "",
+      "type": "csv",
+      "csv_folder": "data/imports/",
+      "lead_time_days": 10,
+      "min_order_qty": 100,
+      "categories": [],
+      "refresh_schedule": "weekly"
+    }
+  ]
+}

@@ -39,10 +39,10 @@ function CustomLabel({ viewBox }: { viewBox?: { cx?: number; cy?: number } }) {
   const cy = viewBox?.cy ?? 0;
   return (
     <g>
-      <text x={cx} y={cy - 8} textAnchor="middle" fill="#e2f0f0" fontSize={28} fontWeight="bold">
+      <text x={cx} y={cy - 6} textAnchor="middle" fill="#e2f0f0" fontSize={22} fontWeight="bold">
         487
       </text>
-      <text x={cx} y={cy + 14} textAnchor="middle" fill="#36a5a5" fontSize={12}>
+      <text x={cx} y={cy + 12} textAnchor="middle" fill="#36a5a5" fontSize={10}>
         SKUs
       </text>
     </g>
@@ -51,8 +51,8 @@ function CustomLabel({ viewBox }: { viewBox?: { cx?: number; cy?: number } }) {
 
 export default function InventoryOverview() {
   return (
-    <div className="space-y-6">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+    <div className="space-y-5">
+      <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-3">
         <StatCard
           title="Total SKUs"
           value={inventorySummary.total}
@@ -103,18 +103,18 @@ export default function InventoryOverview() {
       </div>
 
       {/* Inventory Health Chart */}
-      <div className="bg-bg-card rounded-lg p-6 border border-border-subtle">
-        <h3 className="text-lg font-semibold text-text-primary mb-4">Inventory Health Distribution</h3>
-        <div className="flex flex-col lg:flex-row items-center gap-6">
-          <div className="w-full lg:w-80 h-72">
+      <div className="bg-bg-card rounded-lg p-5 border border-border-subtle">
+        <h3 className="text-sm font-semibold text-text-primary mb-3">Inventory Health Distribution</h3>
+        <div className="flex flex-col lg:flex-row items-center gap-5">
+          <div className="w-full lg:w-64 h-56">
             <ResponsiveContainer width="100%" height="100%">
               <PieChart>
                 <Pie
                   data={inventoryHealthData}
                   cx="50%"
                   cy="50%"
-                  innerRadius={80}
-                  outerRadius={120}
+                  innerRadius={60}
+                  outerRadius={95}
                   dataKey="value"
                   labelLine={false}
                 >
@@ -139,16 +139,16 @@ export default function InventoryOverview() {
             </ResponsiveContainer>
           </div>
           {/* Custom legend */}
-          <div className="flex-1 space-y-3">
+          <div className="flex-1 space-y-2">
             {inventoryHealthData.map((entry, i) => (
-              <div key={i} className="flex items-center justify-between gap-4">
-                <div className="flex items-center gap-3">
-                  <div className="w-3 h-3 rounded-full flex-shrink-0" style={{ backgroundColor: entry.color }} />
-                  <span className="text-text-secondary text-sm">{entry.name}</span>
+              <div key={i} className="flex items-center justify-between gap-3">
+                <div className="flex items-center gap-2">
+                  <div className="w-2.5 h-2.5 rounded-full flex-shrink-0" style={{ backgroundColor: entry.color }} />
+                  <span className="text-text-secondary text-xs">{entry.name}</span>
                 </div>
-                <div className="flex items-center gap-3">
-                  <span className="text-text-primary font-semibold">{entry.value}</span>
-                  <span className="text-text-muted text-sm w-10 text-right">
+                <div className="flex items-center gap-2">
+                  <span className="text-text-primary font-semibold text-sm">{entry.value}</span>
+                  <span className="text-text-muted text-xs w-10 text-right">
                     {Math.round((entry.value / inventorySummary.total) * 100)}%
                   </span>
                 </div>
@@ -159,23 +159,23 @@ export default function InventoryOverview() {
       </div>
 
       {/* At-Risk Items Table */}
-      <div className="bg-bg-card rounded-lg p-6 border border-border-subtle">
-        <h3 className="text-lg font-semibold text-text-primary mb-4">
+      <div className="bg-bg-card rounded-lg p-5 border border-border-subtle">
+        <h3 className="text-sm font-semibold text-text-primary mb-3">
           At-Risk Items
-          <span className="ml-2 text-sm font-normal text-text-muted">(sorted by urgency)</span>
+          <span className="ml-2 text-xs font-normal text-text-muted">(sorted by urgency)</span>
         </h3>
         <div className="overflow-x-auto">
           <table className="w-full text-left text-sm">
             <thead>
               <tr className="border-b border-border-default">
-                <th className="pb-3 text-text-muted font-medium">SKU</th>
-                <th className="pb-3 text-text-muted font-medium">Product</th>
-                <th className="pb-3 text-text-muted font-medium hidden md:table-cell">Location</th>
-                <th className="pb-3 text-text-muted font-medium text-right">Stock</th>
-                <th className="pb-3 text-text-muted font-medium text-right hidden lg:table-cell">Daily Demand</th>
-                <th className="pb-3 text-text-muted font-medium text-right">Days Left</th>
-                <th className="pb-3 text-text-muted font-medium">Status</th>
-                <th className="pb-3 text-text-muted font-medium hidden xl:table-cell">Supplier</th>
+                <th className="pb-2.5 text-text-muted font-medium text-xs">SKU</th>
+                <th className="pb-2.5 text-text-muted font-medium text-xs">Product</th>
+                <th className="pb-2.5 text-text-muted font-medium text-xs hidden md:table-cell">Location</th>
+                <th className="pb-2.5 text-text-muted font-medium text-xs text-right">Stock</th>
+                <th className="pb-2.5 text-text-muted font-medium text-xs text-right hidden lg:table-cell">Daily Demand</th>
+                <th className="pb-2.5 text-text-muted font-medium text-xs text-right">Days Left</th>
+                <th className="pb-2.5 text-text-muted font-medium text-xs">Status</th>
+                <th className="pb-2.5 text-text-muted font-medium text-xs hidden xl:table-cell">Supplier</th>
               </tr>
             </thead>
             <tbody>
@@ -186,22 +186,22 @@ export default function InventoryOverview() {
                     key={item.sku}
                     className="border-b border-border-subtle/50 hover:bg-bg-elevated/30 transition-colors"
                   >
-                    <td className="py-3 text-text-muted font-mono text-xs">{item.sku}</td>
-                    <td className="py-3 text-text-primary font-medium max-w-48">
+                    <td className="py-2.5 text-text-muted font-mono text-xs">{item.sku}</td>
+                    <td className="py-2.5 text-text-primary font-medium text-xs max-w-48">
                       <div className="truncate">{item.product}</div>
                     </td>
-                    <td className="py-3 text-text-muted hidden md:table-cell text-xs">{item.location}</td>
-                    <td className="py-3 text-text-secondary text-right">{item.currentStock}</td>
-                    <td className="py-3 text-text-muted text-right hidden lg:table-cell">{item.dailyDemand}/day</td>
-                    <td className={`py-3 text-right font-bold ${cfg.textCls}`}>
+                    <td className="py-2.5 text-text-muted hidden md:table-cell text-xs">{item.location}</td>
+                    <td className="py-2.5 text-text-secondary text-right text-xs">{item.currentStock}</td>
+                    <td className="py-2.5 text-text-muted text-right hidden lg:table-cell text-xs">{item.dailyDemand}/day</td>
+                    <td className={`py-2.5 text-right font-bold text-xs ${cfg.textCls}`}>
                       {item.daysLeft === 0 ? 'Out' : `${item.daysLeft}d`}
                     </td>
-                    <td className="py-3">
-                      <span className={`px-2 py-0.5 rounded text-xs font-semibold ${cfg.badgeCls}`}>
+                    <td className="py-2.5">
+                      <span className={`px-1.5 py-0.5 rounded text-[10px] font-semibold ${cfg.badgeCls}`}>
                         {cfg.label}
                       </span>
                     </td>
-                    <td className="py-3 text-text-muted text-sm hidden xl:table-cell">{item.supplier}</td>
+                    <td className="py-2.5 text-text-muted text-xs hidden xl:table-cell">{item.supplier}</td>
                   </tr>
                 );
               })}
